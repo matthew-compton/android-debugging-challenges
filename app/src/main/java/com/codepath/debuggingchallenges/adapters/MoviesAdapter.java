@@ -3,6 +3,7 @@ package com.codepath.debuggingchallenges.adapters;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +15,16 @@ import com.bumptech.glide.Glide;
 import com.codepath.debuggingchallenges.R;
 import com.codepath.debuggingchallenges.models.Movie;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MoviesAdapter extends ArrayAdapter<Movie> {
 
+    private List<Movie> mMovies;
+
     public MoviesAdapter(Context context, List<Movie> movies) {
         super(context, 0, movies);
+        mMovies = movies;
     }
 
     @Override
@@ -55,5 +60,21 @@ public class MoviesAdapter extends ArrayAdapter<Movie> {
 
         // Return the completed view to render on screen
         return convertView;
+    }
+
+    @Nullable
+    @Override
+    public Movie getItem(int position) {
+        return mMovies.get(position);
+    }
+
+    @Override
+    public int getCount() {
+        return mMovies.size();
+    }
+
+    public void updateMovies(ArrayList<Movie> movies) {
+        mMovies = movies;
+        notifyDataSetChanged();
     }
 }

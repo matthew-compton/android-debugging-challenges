@@ -20,8 +20,9 @@ public class CurrentDayActivity extends AppCompatActivity {
         tvDay.setText(getDayOfMonth());
     }
 
-    private int getDayOfMonth() {
+    private String getDayOfMonth() {
         Calendar cal = Calendar.getInstance();
-        return cal.get(Calendar.DAY_OF_MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return String.valueOf(day);
     }
 }
